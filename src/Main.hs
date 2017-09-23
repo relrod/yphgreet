@@ -3,13 +3,9 @@
 module Main where
 
 import Control.Lens
-import Control.Monad (void)
-import Control.Monad.Error.Class
 import Control.Monad.IO.Class
-import Control.Monad.Trans.State.Lazy
 import Data.Aeson (Value)
 import Data.Aeson.Lens
-import Data.List (find)
 import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
 import qualified Data.Text as T
@@ -18,8 +14,6 @@ import System.Environment (getEnv)
 import Web.Slack
 import Web.Slack.Message
 import Web.Slack.State
-import Web.Slack.Types
-import Web.Slack.WebAPI
 
 genConfig :: IO SlackConfig
 genConfig = SlackConfig <$> getEnv "YPHGREET_TOKEN"
@@ -78,4 +72,3 @@ main :: IO ()
 main = do
   conf <- genConfig
   runBot conf greeter ()
-  return ()
